@@ -23,8 +23,9 @@ class Transaction
 			else
 			{
 				console.log(transaction);
-				cb(transaction);
+				
 			}
+			cb(transaction);
 		});
 	}
 }

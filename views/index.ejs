@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello Bank!</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet/app.css">
+</head>
+<body>
+	<div class="firstscreen container">
+		<div class="login">
+			Card Number
+			<br>
+			<input type="text" name="c_number" class="c_number forminp">
+			<br>
+			Pin
+			<br>
+			<input type="password" name="c_pin" class="c_pin forminp" maxlength="4">
+			<br>
+			<button class="logon forminp">Next</button>
+			<br>
+			<button class="op forminp">Operator Page</button>
+			<br>
+		</div>
+	</div>
+	<div class="opscreen container hide">
+		<div class="login">
+			Username
+			<br>
+			<input type="text" name="id" class="id forminp">
+			<br>
+			Password
+			<br>
+			<input type="password" name="pin" class="pin forminp" maxlength="4">
+			<br>
+			<button class="oplogon forminp">Next</button>
+			<br>
+		</div>
+	</div>
+
+	<div class="userscreen container hide">
+		<button class="w forminp">Withdraw</button>
+		<button class="d forminp">Deposit</button>
+		<button class="s forminp">Statement(Last 5 Transactions)</button>
+		<button class="p forminp">Pin Change</button>
+	</div>
+
+	<div class="wscreen container hide">
+		Amount
+		<br>
+		<input type="text" name="amtw" class="amtw forminp">
+		<br>
+		<button class="withdraw forminp">Withdraw</button>
+	</div>
+
+	<div class="dscreen container hide">
+		Amount
+		<br>
+		<input type="text" name="amtd" class="amtd forminp">
+		<br>
+		<button class="deposit forminp">Deposit</button>
+	</div>
+
+	<div class="pscreen container hide">
+		New Pin
+		<br>
+		<input type="password" name="newpin" class="newpin forminp">
+		<br>
+		<button class="npin forminp">Change Pin</button>
+	</div>
+
+	<div class="operatorscreen container hide">
+		<button class="od forminp">Deposit</button>
+		<button class="ob forminp">Current ATM Balance</button>
+	</div>
+	<div class="opdscreen container hide">
+		Amount
+		<br>
+		<input type="text" name="amtdo" class="amtdo forminp">
+		<br>
+		<button class="odeposit forminp">Deposit</button>
+	</div>
+
+	<div class="messagescreen container hide">
+		<div class="message"></div>
+	</div>
+
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

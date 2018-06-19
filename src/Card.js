@@ -57,7 +57,7 @@ class Card
 	{
 		var q={
 			c_number:this.c_number,
-			c_pin:Number(this.c_pin)
+			c_pin:this.c_pin
 		};
 		console.log(q);
 		var auth=null;
@@ -66,7 +66,7 @@ class Card
 			console.log(card);
 			if(err)
 			{
-
+				console.log(err.message);
 			}
 			else
 			{

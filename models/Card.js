@@ -2,7 +2,7 @@ var mongoose=require("mongoose");
 
 var cardSchema=new mongoose.Schema({
 	c_number:{type:String,index:{unique:true}},
-	c_pin:Number,
+	c_pin:String,
 	acc_num:String
 });
 

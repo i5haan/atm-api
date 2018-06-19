@@ -38,8 +38,9 @@ class Operator
 				{
 					auth=false;
 				}
-				cb(auth);
+				
 			}
+			cb(auth);
 		});
 	}
 }

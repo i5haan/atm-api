@@ -1,0 +1,29 @@
+.container
+{
+	width:60%;
+	border:2px black solid;
+	height:700px;
+	margin:auto;
+	background:steelblue;
+	text-align: center;
+	font-size: 40px;
+}
+
+
+
+.hide
+{
+	display: none;
+}
+
+.forminp
+{
+	width:50%;
+	margin:20px;
+	font-size: 40px;
+	text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
