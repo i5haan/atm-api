@@ -27,7 +27,7 @@ var newAtm=new Atm(200000000);
 var newOperator=new Operator("i5haan",9803);
 
 // newAccount.insertDB();
-newCard.insertDB();
+// newCard.insertDB();
 // // newTransaction.insertDB();
 // newAtm.insertDB();
 // newOperator.insertDB();

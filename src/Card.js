@@ -59,11 +59,9 @@ class Card
 			c_number:this.c_number,
 			c_pin:this.c_pin
 		};
-		console.log(q);
 		var auth=null;
 		cardModel.findOne(q,function(err,card)
 		{
-			console.log(card);
 			if(err)
 			{
 				console.log(err.message);

@@ -5,7 +5,10 @@ var pinValidator=function(pin)
 	{
 		return false;
 	}
-
+	if(pin[0]=="-")
+	{
+		return false;
+	}
 	//length Check
 	if(pin.length!=4)
 	{

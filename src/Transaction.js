@@ -18,12 +18,6 @@ class Transaction
 		{
 			if(err)
 			{
-				console.log("Error:)");
-			}
-			else
-			{
-				console.log(transaction);
-				
 			}
 			cb(transaction);
 		});

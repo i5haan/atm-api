@@ -19,8 +19,15 @@ router.post("/validate",function(req,res,next)
 	var tCard=new Card(req.body.c_number,req.body.c_pin);
 	tCard.validate(function(auth,card)
 		{
-			console.log(auth);
-			if(auth==null)
+			if(!req.body.c_number || !req.body.c_pin)
+			{
+				var ret={
+					status:"F",
+					message:"One or more of the Fields is Missing"
+				};
+				res.send(JSON.stringify(ret));
+			}
+			else if(auth==null)
 			{
 				var ret={
 					status:"F",
@@ -53,10 +60,8 @@ router.post("/validate",function(req,res,next)
 router.post("/account",function(req,res)
 	{
 		var tCard=new Card(req.body.c_number,req.body.c_pin,"9876");
-		console.log(tCard);
 		tCard.validate(function(auth,card)
 			{
-				console.log(card);
 				if(auth==null)
 				{
 					var ret={
@@ -94,11 +99,9 @@ router.post("/withdraw",function(req,res)
 	sem.take(function()
 	{
 		var amt=Number(req.body.amt);
-		console.log(amt);
 		var tCard=new Card(req.body.c_number,req.body.c_pin);
 		tCard.validate(function(auth,card)
 			{
-				console.log(card);
 				if(auth==null)
 				{
 					var ret={
@@ -112,7 +115,6 @@ router.post("/withdraw",function(req,res)
 				{
 					if(auth==true)
 					{
-						console.log("reached auth");
 						accountScehma.findOne({acc_num:card.acc_num},function(err,account)
 								{
 									if(err)
@@ -127,7 +129,6 @@ router.post("/withdraw",function(req,res)
 									}
 									else
 									{
-										console.log(amt);
 										if(!middleware.amtValidator(req.body.amt))
 										{
 											var ret={
@@ -152,7 +153,6 @@ router.post("/withdraw",function(req,res)
 											atmSchema.findOne({},function(err,atm){
 												if(err)
 												{
-													console.log("Error");
 													var ret={
 														status:"F",
 														message:"Databse access error"
@@ -164,7 +164,6 @@ router.post("/withdraw",function(req,res)
 												{
 													if(amt>atm.balance)
 													{
-														console.log("Error");
 														var ret={
 															status:"F",
 															message:"ATM unable To dispense Cash!!"
@@ -176,7 +175,6 @@ router.post("/withdraw",function(req,res)
 													{
 														newTransaction.insertDB(function(t)
 														{
-															console.log("Pushed!!!")
 															account.transaction.push(t._id);
 															account.balance=account.balance-amt;
 															atm.balance=atm.balance+-amt;
@@ -224,7 +222,6 @@ router.post("/deposit",function(req,res)
 		var tCard=new Card(req.body.c_number,req.body.c_pin);
 		tCard.validate(function(auth,card)
 			{
-				console.log(card);
 				if(auth==null)
 				{
 					var ret={
@@ -243,7 +240,6 @@ router.post("/deposit",function(req,res)
 								{
 									if(err)
 									{
-										console.log("Error!!");
 										var ret={
 											status:"F",
 											message:"Databse access error"
@@ -280,7 +276,6 @@ router.post("/deposit",function(req,res)
 												{
 													newTransaction.insertDB(function(t)
 													{
-														console.log("Pushed!!!")
 														account.transaction.push(t._id);
 														account.balance=account.balance+amt;
 														atm.balance=atm.balance+amt;
@@ -323,11 +318,9 @@ router.post("/deposit",function(req,res)
 router.post("/changepin",function(req,res)
 	{
 		var newPin=req.body.npin;
-		// console.log(newPin);
 		var tCard=new Card(req.body.c_number,req.body.c_pin);
 		tCard.validate(function(auth,card)
 			{
-				console.log(card);
 				if(!middleware.pinValidator(newPin))
 				{
 					var ret={
@@ -357,7 +350,11 @@ router.post("/changepin",function(req,res)
 						{
 							if(err)
 							{
-								console.log(err);
+								var ret={
+									status:"F",
+									message:"Databse access error"
+								};
+								res.send(JSON.stringify(ret));
 							}
 							else
 							{
@@ -384,10 +381,8 @@ router.post("/changepin",function(req,res)
 router.post("/statement",function(req,res)
 	{
 		var tCard=new Card(req.body.c_number,req.body.c_pin,"9876");
-		console.log(tCard);
 		tCard.validate(function(auth,card)
 			{
-				console.log(card);
 				if(auth==null)
 				{
 					var ret={
@@ -402,12 +397,10 @@ router.post("/statement",function(req,res)
 					{
 						transactionSchema.find({acc_num:card.acc_num},{_id:0}).sort({date:-1}).exec(function(err,transaction)
 							{
-								console.log(transaction);
 								var ret={
 									status:"S",
 									transaction:transaction.slice(0,5)
 								};
-								// console.log(typeof(transaction[0].date));
 								res.send(JSON.stringify(ret));
 							});
 					}
