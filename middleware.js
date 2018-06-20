@@ -5,7 +5,7 @@ var pinValidator=function(pin)
 	{
 		return false;
 	}
-	if(pin[0]=="-")
+	if(pin[0]=="-" || pin[0]=="+")
 	{
 		return false;
 	}
